@@ -4,7 +4,7 @@
 // using event delegation on #todo-list.
 
 // TODO: your code here
-//the update
+
 document.addEventListener('DOMContentLoaded',()=> {
     const todoInput =document.getElementById('todo-input');
     const todoList=document.getElementById('todo-list');
