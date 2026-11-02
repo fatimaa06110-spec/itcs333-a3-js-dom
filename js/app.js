@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded',()=> {
      
     const deleteBtn =document.createElement('button');
     deleteBtn.textContent='Delete';
-    deleteBtn.className='delet-btu';
+    deleteBtn.className='delet-btn';
     li.appendChild(deleteBtn);
 
     todoList.appendChild(li);
@@ -85,7 +85,7 @@ if(todoForm){
         const li = target.closest('li');
         if(!li) return;
 
-        if(target.classList.contains('delet-but')){
+        if(target.classList.contains('delet-btn')){
             li.remove();
             updateCounter();
             return;
@@ -108,7 +108,7 @@ if(todoForm){
             filterActive.addEventListener('click', ()=>{
                 CurrentFilter='active';
                 if(filterAll) filterAll.classList.remove('active');
-                filterActive.ClassList.add('active');
+                filterActive.classList.add('active');
                 if(filterDone) filterDone.classList.remove('active');
                 appFilter();
             });
@@ -117,8 +117,8 @@ if(todoForm){
             if(filterDone){
                 filterDone.addEventListener('click',() =>{
                      CurrentFilter='done';
-                if(filterAll) filterAll.ClassList.remove('active');
-                if(filterActive) filterActive.ClassList.remove('active');
+                if(filterAll) filterAll.classList.remove('active');
+                if(filterActive) filterActive.classList.remove('active');
                 appFilter();
             });
 
