@@ -4,7 +4,7 @@
 // using event delegation on #todo-list.
 
 // TODO: your code here
-//the update
+
 document.addEventListener('DOMContentLoaded',()=> {
     const todoInput =document.getElementById('todo-input');
     const todoList=document.getElementById('todo-list');
@@ -51,16 +51,24 @@ document.addEventListener('DOMContentLoaded',()=> {
     if (e) e.preventDefault();
     const text =todoInput.value.trim();
     if(text ==''){
-        if (errorMsg) errorMsg.style.display='block';
+        if (errorMsg){
+            errorMsg.textContent='Task cannot be empty';
+            errorMsg.style.display='';
+            errorMsg.classList.remove('hidden');
+        }
         return;
     }
-    if (errorMsg) errorMsg.style.display='none';
+    if (errorMsg){
+        errorMsg.textContent='';
+            errorMsg.style.display='none';
+            errorMsg.classList.add('hidden');
+    } 
     const li=document.createElement('li');
     li.textContent= text;
      
     const deleteBtn =document.createElement('button');
     deleteBtn.textContent='Delete';
-    deleteBtn.className='delet-btu';
+    deleteBtn.className='delet-btn';
     li.appendChild(deleteBtn);
 
     todoList.appendChild(li);
@@ -85,7 +93,7 @@ if(todoForm){
         const li = target.closest('li');
         if(!li) return;
 
-        if(target.classList.contains('delet-but')){
+        if(target.classList.contains('delet-btn')){
             li.remove();
             updateCounter();
             return;
@@ -99,7 +107,7 @@ if(todoForm){
         filterAll.addEventListener('click',()=>{
             CurrentFilter='all';
             filterAll.classList.add('active');
-            if(filterActive) filterActive.ClassList.remove('active');
+            if(filterActive) filterActive.classList.remove('active');
             if(filterDone) filterDone.classList.remove('active');
             appFilter();
         });
@@ -108,7 +116,7 @@ if(todoForm){
             filterActive.addEventListener('click', ()=>{
                 CurrentFilter='active';
                 if(filterAll) filterAll.classList.remove('active');
-                filterActive.ClassList.add('active');
+                filterActive.classList.add('active');
                 if(filterDone) filterDone.classList.remove('active');
                 appFilter();
             });
@@ -117,8 +125,8 @@ if(todoForm){
             if(filterDone){
                 filterDone.addEventListener('click',() =>{
                      CurrentFilter='done';
-                if(filterAll) filterAll.ClassList.remove('active');
-                if(filterActive) filterActive.ClassList.remove('active');
+                if(filterAll) filterAll.classList.remove('active');
+                if(filterActive) filterActive.classList.remove('active');
                 appFilter();
             });
 
